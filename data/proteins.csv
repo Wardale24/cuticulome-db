@@ -1,0 +1,12 @@
+Protein Name,Species,cDNA Code,Tissue Specificity,Function,3D Structure,Reference
+CPR1,Drosophila melanogaster,CG1234,Cuticle,Structural protein of the cuticle,https://alphafold.ebi.ac.uk/entry/Q9V9Q7,Smith et al. 2019
+CPR2,Apis mellifera,AMG5678,Epidermis,Chitin binding,https://alphafold.ebi.ac.uk/entry/A0A088A6F3,Liu et al. 2020
+CPLCP1,Anopheles gambiae,AGAP004321,Legs,Elasticity and rigidity,https://alphafold.ebi.ac.uk/entry/Q7Q5K1,Zhang et al. 2018
+CPCFC1,Bombyx mori,BMOR12234,Head capsule,Structural maintenance,https://alphafold.ebi.ac.uk/entry/Q8MZP0,Wu et al. 2017
+CPAP1,Tribolium castaneum,TC00123,Cuticle and wings,Cuticle assembly,https://alphafold.ebi.ac.uk/entry/Q7ZY23,Tanaka et al. 2021
+CPR3,Periplaneta americana,PA0012,Wings,Rigidity and protection,https://alphafold.ebi.ac.uk/entry/Q9N7T3,Murata et al. 2022
+CPCFC2,Locusta migratoria,LM4567,Elytra,Elastic flexibility,https://alphafold.ebi.ac.uk/entry/A0A6J0PGK3,Rossi et al. 2019
+CPAP2,Tenebrio molitor,TM9021,Cuticle,Structural protein,https://alphafold.ebi.ac.uk/entry/Q6T8Y3,Khan et al. 2020
+CPR4,Blattella germanica,BG2231,Legs,Chitin crosslinking,https://alphafold.ebi.ac.uk/entry/Q9N5Y1,Fang et al. 2021
+CPR5,Culex quinquefasciatus,CQ4455,Abdomen,Cuticle rigidity,https://alphafold.ebi.ac.uk/entry/Q8T4R6,Nelson et al. 2023
+
