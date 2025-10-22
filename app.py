@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Page config
-st.set_page_config(page_title="🐜 Cuticulome.db", page_icon="🐜")
+st.set_page_config(page_title="🐜 Cuticulome.db")
 
 # Load data
 @st.cache_data
