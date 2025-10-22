@@ -1,62 +1,37 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Cuticulome Mini Database", page_icon="🪶", layout="wide")
-
+# Load data
 @st.cache_data
 def load_data():
     return pd.read_csv("data/proteins.csv")
 
 df = load_data()
 
+# App title
 st.title("🪶 Cuticulome Mini Database (Prototype)")
-st.write("""
-A pilot database of arthropod cuticular proteins with hierarchical taxonomy filters.
-Explore by Family → Genus → Species and download your filtered results.
-""")
+st.write("A pilot database of arthropod cuticular proteins — free prototype version.")
 
-# --- Sidebar Filters ---
-st.sidebar.header("🧬 Filter Proteins")
+# Sidebar filters
+st.sidebar.header("Filter Proteins")
+species = st.sidebar.multiselect("Select Species", sorted(df["Species"].unique()))
+function = st.sidebar.text_input("Search Function Keyword")
 
-# Family selection
-families = sorted(df["Family"].unique())
-selected_family = st.sidebar.selectbox("Select Family", ["All"] + families)
+filtered_df = df.copy()
+if species:
+    filtered_df = filtered_df[filtered_df["Species"].isin(species)]
+if function:
+    filtered_df = filtered_df[filtered_df["Function"].str.contains(function, case=False, na=False)]
 
-# Filter by selected family
-if selected_family != "All":
-    df_filtered = df[df["Family"] == selected_family]
-else:
-    df_filtered = df.copy()
+st.dataframe(filtered_df, use_container_width=True)
 
-# Genus selection
-genera = sorted(df_filtered["Genus"].unique())
-selected_genus = st.sidebar.selectbox("Select Genus", ["All"] + genera)
-
-if selected_genus != "All":
-    df_filtered = df_filtered[df_filtered["Genus"] == selected_genus]
-
-# Species selection
-species = sorted(df_filtered["Species"].unique())
-selected_species = st.sidebar.selectbox("Select Species", ["All"] + species)
-
-if selected_species != "All":
-    df_filtered = df_filtered[df_filtered["Species"] == selected_species]
-
-# Function keyword filter
-function_keyword = st.sidebar.text_input("Search Function Keyword")
-if function_keyword:
-    df_filtered = df_filtered[df_filtered["Function"].str.contains(function_keyword, case=False, na=False)]
-
-# --- Display filtered table ---
-st.dataframe(df_filtered, use_container_width=True)
-
-# --- Download filtered data ---
+# Download option
 st.download_button(
-    label="⬇️ Download filtered data as CSV",
-    data=df_filtered.to_csv(index=False),
+    label="Download filtered data as CSV",
+    data=filtered_df.to_csv(index=False),
     file_name="cuticulome_filtered.csv",
     mime="text/csv"
 )
 
 st.markdown("---")
-st.caption("Prototype by Alex Wardale — Powered by Streamlit.")
+st.caption("Prototype by Alex Wardale — powered by Streamlit.")
