@@ -35,7 +35,7 @@ st.download_button(
 
 st.markdown("---")
 st.caption("Prototype by Alex Wardale — powered by Streamlit.")
- Cuticulome Mini Database (Prototype)")
+Cuticulome Mini Database (Prototype)")
 st.write("A pilot database of arthropod cuticular proteins — free prototype version.")
 
 # Sidebar filters
