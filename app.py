@@ -12,26 +12,23 @@ df = load_data()
 st.title("🐜 Cuticulome.db - Prototype")
 st.write("A database of arthropod cuticular proteins — prototype version")
 
-# Sidebar filters
-st.sidebar.header("Filter Proteins")
-species = st.sidebar.multiselect("Select Species", sorted(df["Species"].unique()))
-function = st.sidebar.text_input("Search Function Keyword")
+st.markdown("""
+Welcome to the **Cuticulome Database** — a curated collection of arthropod cuticular proteins.
 
-filtered_df = df.copy()
-if species:
-    filtered_df = filtered_df[filtered_df["Species"].isin(species)]
-if function:
-    filtered_df = filtered_df[filtered_df["Function"].str.contains(function, case=False, na=False)]
+Use the sidebar to navigate between:
+- 🧭 **Help**: Learn about the database and its columns  
+- 📊 **Statistics**: View summary statistics  
+- 📫 **Contact**: Reach the maintainers  
+""")
 
-st.dataframe(filtered_df, use_container_width=True)
+# Load example data
+@st.cache_data
+def load_data():
+    return pd.read_csv("data/cuticular_proteins.csv")
 
-# Download option
-st.download_button(
-    label="Download filtered data as CSV",
-    data=filtered_df.to_csv(index=False),
-    file_name="cuticulome_filtered.csv",
-    mime="text/csv"
-)
+df = load_data()
+st.subheader("Preview of the database")
+st.dataframe(df.head(10))
 
 st.markdown("---")
 st.caption("Prototype by Alex Wardale — powered by Streamlit.")
