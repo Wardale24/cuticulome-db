@@ -9,26 +9,103 @@ def load_data():
 df = load_data()
 
 # App title
-st.title("🐜 Cuticulome.db - Prototype")
-st.write("A database of arthropod cuticular proteins — prototype version")
+st.title("import streamlit as st
+import pandas as pd
 
-st.markdown("""
-Welcome to the **Cuticulome Database** — a curated collection of arthropod cuticular proteins.
-
-Use the sidebar to navigate between:
-- 🧭 **Help**: Learn about the database and its columns  
-- 📊 **Statistics**: View summary statistics  
-- 📫 **Contact**: Reach the maintainers  
-""")
-
-# Load example data
+# Load data
 @st.cache_data
 def load_data():
-    return pd.read_csv("data/cuticular_proteins.csv")
+    return pd.read_csv("data/proteins.csv")
 
 df = load_data()
-st.subheader("Preview of the database")
-st.dataframe(df.head(10))
+
+# App title
+st.title("import streamlit as st
+import pandas as pd
+
+# Load data
+@st.cache_data
+def load_data():
+    return pd.read_csv("data/proteins.csv")
+
+df = load_data()
+
+# App title
+st.title("🐜 Cuticulome.db - Prototype")
+st.write("A database of arthropod cuticular proteins — prototype")
+
+# Sidebar filters
+st.sidebar.header("Filter Proteins")
+species = st.sidebar.multiselect("Select Species", sorted(df["Species"].unique()))
+function = st.sidebar.text_input("Search Function Keyword")
+
+filtered_df = df.copy()
+if species:
+    filtered_df = filtered_df[filtered_df["Species"].isin(species)]
+if function:
+    filtered_df = filtered_df[filtered_df["Function"].str.contains(function, case=False, na=False)]
+
+st.dataframe(filtered_df, use_container_width=True)
+
+# Download option
+st.download_button(
+    label="Download filtered data as CSV",
+    data=filtered_df.to_csv(index=False),
+    file_name="cuticulome_filtered.csv",
+    mime="text/csv"
+)
+
+st.markdown("---")
+st.caption("Prototype by Alex Wardale — powered by Streamlit.")
+ Cuticulome Mini Database (Prototype)")
+st.write("A pilot database of arthropod cuticular proteins — free prototype version.")
+
+# Sidebar filters
+st.sidebar.header("Filter Proteins")
+species = st.sidebar.multiselect("Select Species", sorted(df["Species"].unique()))
+function = st.sidebar.text_input("Search Function Keyword")
+
+filtered_df = df.copy()
+if species:
+    filtered_df = filtered_df[filtered_df["Species"].isin(species)]
+if function:
+    filtered_df = filtered_df[filtered_df["Function"].str.contains(function, case=False, na=False)]
+
+st.dataframe(filtered_df, use_container_width=True)
+
+# Download option
+st.download_button(
+    label="Download filtered data as CSV",
+    data=filtered_df.to_csv(index=False),
+    file_name="cuticulome_filtered.csv",
+    mime="text/csv"
+)
+
+st.markdown("---")
+st.caption("Prototype by Alex Wardale — powered by Streamlit.")
+ Cuticulome Mini Database (Prototype)")
+st.write("A pilot database of arthropod cuticular proteins — free prototype version.")
+
+# Sidebar filters
+st.sidebar.header("Filter Proteins")
+species = st.sidebar.multiselect("Select Species", sorted(df["Species"].unique()))
+function = st.sidebar.text_input("Search Function Keyword")
+
+filtered_df = df.copy()
+if species:
+    filtered_df = filtered_df[filtered_df["Species"].isin(species)]
+if function:
+    filtered_df = filtered_df[filtered_df["Function"].str.contains(function, case=False, na=False)]
+
+st.dataframe(filtered_df, use_container_width=True)
+
+# Download option
+st.download_button(
+    label="Download filtered data as CSV",
+    data=filtered_df.to_csv(index=False),
+    file_name="cuticulome_filtered.csv",
+    mime="text/csv"
+)
 
 st.markdown("---")
 st.caption("Prototype by Alex Wardale — powered by Streamlit.")
