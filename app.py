@@ -9,7 +9,7 @@ def load_data():
 df = load_data()
 
 # App title
-st.title("🐜 Cuticulome (Prototype)")
+st.title("🐜 Cuticulome.db - Prototype")
 st.write("A database of arthropod cuticular proteins — prototype version")
 
 # Sidebar filters
