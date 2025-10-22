@@ -9,17 +9,6 @@ def load_data():
 df = load_data()
 
 # App title
-st.title("import streamlit as st
-import pandas as pd
-
-# Load data
-@st.cache_data
-def load_data():
-    return pd.read_csv("data/proteins.csv")
-
-df = load_data()
-
-# App title
 st.title("🐜 Cuticulome.db - Prototype")
 st.write("A database of arthropod cuticular proteins — prototype")
 
